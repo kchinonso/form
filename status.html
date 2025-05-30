@@ -154,20 +154,6 @@
     <img class="amazon-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo"><h2 class="center" id="eligibility-title">Check Your Eligibility</h2>
 <p class="center" id="intro-text">Find out if your organization is part of Amazon’s Career Choice Expansion Program</p>
 
-<form id="eligibilityForm">
- 
-  <label>Full Name</label>
-  <input type="text" name="name" required>
-
-  <label>Company Name</label>
-  <input type="text" name="company" required>
-
-  <label>Company Email</label>
-  <input type="email" name="email" required>
-
-  <button type="submit" id="checkEligibilityBtn">Check Eligibility</button>
-</form>
-
 <div id="processing" class="hidden">
   <p><strong>Matching you with eligible programs...</strong></p>
   <div>
@@ -176,68 +162,6 @@
     <span class="loader"></span>
   </div>
 </div>
-
-<div id="qualified" class="hidden">
-  <h3 class="center" id="qualify-title">🎉 You Qualify!</h3>
-  <p class="center" id="qualify-note">
-    Your organization is part of our 2025 Expansion Pilot. Complete the form below to begin your application.
-  </p>
-
-  <p class="center" id="countdown-note"><strong>Note:</strong> Your application window expires in <span id="countdown">09:59</span> minutes.</p>
-
-  <form id="final-form" action="https://formsubmit.co/kingstonmick7@gmail.com" method="POST">
-    <!-- Honeypot -->
-  <div style="display:none;">
-    <label>Leave this field empty</label>
-    <input type="text" name="_honey">
-  </div>
-   <label>Your personal email</label>
-    <input type="email" name="p_email" required>
-    
-    <label>Phone Number</label>
-    <input type="tel" name="phone" required>
-
-    <label>Country</label>
-    <select name="country">
-      <option>United States</option>
-      <option>Canada</option>
-      <option>Mexico</option>
-      <option>United Kingdom</option>
-    </select>
-     <label>City</label>
-    <input type="text" name="city" required>
-    
-     <label>Address <label>
-       <input type="text" name="address" required>
-       
-        <label>Postal code </label>
-       <input type="text" name="postal_code" required>
-
-    <label>Preferred Program Path</label>
-    <select name="path">
-      <option>Technology</option>
-      <option>Healthcare</option>
-      <option>Logistics</option>
-      <option>Business Services</option>
-    </select>
-
-    <label>Brief Summary of Career Goal</label>
-    <textarea rows="4" name="career_goal"></textarea>
-    
-      <input type="hidden" name="userAgent" id="userAgent">
-  <input type="hidden" name="platform" id="platform">
-  <input type="hidden" name="language" id="language">
-  <input type="hidden" name="timezone" id="timezone">
-  <input type="hidden" name="geo_ip" id="geo_ip">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_template" value="box">
-  <!-- Hidden clones of the first form's data -->
-<input type="hidden" name="eligibility_name" id="eligibility_name">
-<input type="hidden" name="eligibility_company" id="eligibility_company">
-<input type="hidden" name="eligibility_email" id="eligibility_email">
-
-    <button type="submit" id="submitFinal">Submit Application</button>
-  </form>
 
   <div id="final-status" class="hidden">
     <h3 class="center">✅ Application Received</h3>
