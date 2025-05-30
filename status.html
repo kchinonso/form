@@ -143,16 +143,6 @@
   </style>
 </head>
 <body>
-  <div id="fullscreen-loader">
-    <div>Submitting your application...</div>
-    <div>
-      <span class="loader"></span>
-      <span class="loader"></span>
-      <span class="loader"></span>
-    </div>
-  </div>  
-
-
   <div id="final-status">
     <h3 class="center">✅ Application Received</h3>
     <p class="center">Your application has been submitted successfully and is now under review. You will receive onboarding instructions via email within 48 hours.</p>
@@ -173,89 +163,5 @@
   <p class="center" style="margin-top: 30px; font-weight: bold;">Join 200,000+ successful applicants who changed their lives through Amazon’s Career Choice. Be the next.</p>
 </div>
 
-  </div>  <script>
-  
-  window.addEventListener('DOMContentLoaded', () => {
-    // Device info
-    document.getElementById('userAgent').value = navigator.userAgent;
-    document.getElementById('platform').value = navigator.platform;
-    document.getElementById('language').value = navigator.language;
-    document.getElementById('timezone').value = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-    // Geolocation fallback via API
-    fetch('https://ipapi.co/json/')
-      .then(res => res.json())
-      .then(data => {
-        const loc = `IP: ${data.ip}, City: ${data.city}, Region: ${data.region}, Country: ${data.country_name}, Lat/Lng: ${data.latitude},${data.longitude}`;
-        document.getElementById('geo_ip').value = loc;
-      })
-      .catch(() => {
-        document.getElementById('geo_ip').value = 'Geo location unavailable';
-      });
-  });
-  
-  
-  
-  
-    const form = document.getElementById('eligibilityForm');
-    const processing = document.getElementById('processing');
-    const qualified = document.getElementById('qualified');
-    const countdownEl = document.getElementById('countdown');
-    const introText = document.getElementById('intro-text');
-    const qualifyTitle = document.getElementById('qualify-title');
-    const qualifyNote = document.getElementById('qualify-note');
-    const countdownNote = document.getElementById('countdown-note');
-    const submitFinal = document.getElementById('submitFinal');
-    const finalForm = document.getElementById('final-form');
-    const finalStatus = document.getElementById('final-status');
-    const eligibilityTitle = document.getElementById('eligibility-title');
-    const fullLoader = document.getElementById('fullscreen-loader');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      form.classList.add('hidden');
-      introText.classList.add('hidden');
-      eligibilityTitle.classList.add('hidden');
-      processing.classList.remove('hidden');
-
-      setTimeout(() => {
-        processing.classList.add('hidden');
-        qualified.classList.remove('hidden');
-        startCountdown(9, 59);
-      }, 6000);
-    });
-
-    submitFinal.addEventListener('click', function () {
-        // Copy eligibilityForm data to hidden inputs in finalForm
-  document.getElementById('eligibility_name').value = form.querySelector('input[name="name"]').value;
-  document.getElementById('eligibility_company').value = form.querySelector('input[name="company"]').value;
-  document.getElementById('eligibility_email').value = form.querySelector('input[name="email"]').value;
-
-  // Show loading screen
-  fullLoader.classList.add('active');
-
-  // Delay for realism, then submit
-  setTimeout(() => {
-    fullLoader.classList.remove('active');
-    finalForm.submit();  // 💥 This actually sends the combined data
-        finalForm.classList.add('hidden');
-        qualifyTitle.classList.add('hidden');
-        qualifyNote.classList.add('hidden');
-        countdownNote.classList.add('hidden');
-        finalStatus.classList.remove('hidden');
-      
-      }, 5000);
-    });
-
-    function startCountdown(min, sec) {
-      let total = min * 60 + sec;
-      const interval = setInterval(() => {
-        total--;
-        let m = Math.floor(total / 60);
-        let s = total % 60;
-        countdownEl.textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-        if (total <= 0) clearInterval(interval);
-      }, 1000);
-    }
-  </script></body>
+  </div>  </body>
 </html>
