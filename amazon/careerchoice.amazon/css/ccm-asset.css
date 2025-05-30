@@ -1,0 +1,84 @@
+.locale-dropdown-override #locale-dropdown-selector{
+    background-color: #232F3F !important;
+    border: none !important;
+    color: #fff !important;
+    height: 1.5rem !important;
+    margin-bottom: 0 !important;
+}
+
+.video-override video {
+    border: none !important;
+}
+
+.column-text-override {
+ color: #555 !important;
+}
+
+.rooting-for-you-column .column {
+    padding-bottom: 0 !important;
+}
+
+.locale-dropdown-override label {
+    display: none !important;
+}
+
+.participant-carousel .carousel__track {
+    width: calc(100% - 1rem) !important;
+}
+
+.paragraph-text-override span.text-color-picker.color-normal, .a20m span.text-color-picker.color-normal a {
+    color: #232F3E !important;
+}
+
+.box-shadow {
+    box-shadow: 0 0 8px rgba(17,17,17,.2) !important;
+}
+
+.alumni-video-carousel .carousel-wrapper {
+    padding-top: 0rem !important;
+}
+.alumni-video-carousel .carousel-wrapper .carousel__item {
+    padding-top: 0rem !important;
+}
+
+@media only screen and (min-width: 768px) {
+    .locale-column {
+        width: 13% !important;
+    }
+
+    .in-the-news-link-column {
+        width: 11% !important;
+    }
+    .in-the-news-column {
+        width: 11% !important;
+    }
+
+    .home-link-column {
+        width: 13% !important;
+    }
+
+    .alumni-link-column {
+        width: 13% !important;
+    }
+
+    .logo-top-column {
+        width: 61% !important;
+    }
+
+    .home-link-column .advertiser-registration-type {
+        text-align: end !important;
+    }
+
+    .alumni-link-column .advertiser-registration-type {
+        text-align: end !important;
+    }
+
+    .in-the-news-link-column .advertiser-registration-type {
+        text-align: end !important;
+    }
+
+    .in-the-news-column .advertiser-registration-type {
+        text-align: end !important;
+    }
+
+}
